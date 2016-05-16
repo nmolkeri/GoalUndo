@@ -134,6 +134,15 @@ TEST(GoalUndoTest, addMultipleGoalMultipleOperationGetOperation)
     ASSERT_TRUE(x.getOperations() == "Look in craigslist.com, Contact seller");
 }
 
+TEST(GoalUndoTest, undoGoalTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.undoGoal();
+    ASSERT_FALSE(x.getGoal() == "Get Fit");
+    ASSERT_TRUE(x.getGoal() == "");
+}
+
 
 
 
