@@ -63,3 +63,29 @@ TEST(GoalUndoTest, addNonStringOperationGetOperation)
     ASSERT_TRUE(x.getOperations() == ""); //returns non string operation as nothing was added.
 }
 
+TEST(GoalUndoTest, addMultipleOperationTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Lift weight");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging, Lift weight");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
