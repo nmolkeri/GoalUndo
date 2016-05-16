@@ -97,6 +97,14 @@ TEST(GoalUndoTest, addMultipleGoalGetOperation)
     ASSERT_TRUE(x.getOperations() == "Look in craigslist.com");
 }
 
+TEST(GoalUndoTest, addMultipleGoalNonStringGoalGetOperation)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("", "Look in craigslist.com");
+    ASSERT_FALSE(x.getOperations() == "Look in craigslist.com");         //returns non string goal
+    ASSERT_TRUE(x.getOperations() == "Go for jogging,");         //returns prevously added goal
+}
 
 
 
