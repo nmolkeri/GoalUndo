@@ -125,6 +125,14 @@ TEST(GoalUndoTest, addMultipleGoalNonStringOperationGetOperation)
 }
 
 
+TEST(GoalUndoTest, addMultipleGoalMultipleOperationGetOperation)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Buy a car", "Look in craigslist.com,");
+    x.addOperation("Contact seller");
+    ASSERT_TRUE(x.getOperations() == "Look in craigslist.com, Contact seller");
+}
 
 
 
