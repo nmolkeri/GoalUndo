@@ -26,3 +26,10 @@ TEST(GoalUndoTest, goalGetTest)
     x.addOperation("Get Fit", "Go for jogging");
     ASSERT_TRUE(x.getGoal() == "Get Fit");
 }
+
+TEST(GoalUndoTest, operationGetTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging");
+}
