@@ -33,3 +33,10 @@ TEST(GoalUndoTest, operationGetTest)
     x.addOperation("Get Fit", "Go for jogging");
     ASSERT_TRUE(x.getOperations() == "Go for jogging");
 }
+
+TEST(GoalUndoTest, addNonStringGoalGetGoal)
+{
+    GoalUndo x;
+    x.addOperation("", "Go for jogging");
+    ASSERT_TRUE(x.getGoal() == "");         //returns non string goal
+}
