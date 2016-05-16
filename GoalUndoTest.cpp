@@ -89,6 +89,13 @@ TEST(GoalUndoTest, addMultipleGoalGetGoal)
     ASSERT_TRUE(x.getGoal() == "Buy a car");
 }
 
+TEST(GoalUndoTest, addMultipleGoalGetOperation)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Buy a car", "Look in craigslist.com");
+    ASSERT_TRUE(x.getOperations() == "Look in craigslist.com");
+}
 
 
 
