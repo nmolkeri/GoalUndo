@@ -18,3 +18,11 @@ TEST(GoalUndoTest, sanityCheck)
 {
 	ASSERT_TRUE(true);
 }
+
+
+TEST(GoalUndoTest, goalGetTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging");
+    ASSERT_TRUE(x.getGoal() == "Get Fit");
+}
