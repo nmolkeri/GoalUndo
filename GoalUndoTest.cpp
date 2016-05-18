@@ -265,6 +265,24 @@ TEST(GoalUndoTest, noGoalNoOperationUndoOperationTest)
     ASSERT_TRUE(x.getOperations() == "");
 }
 
+TEST(GoalUndoTest, noGoalNoOperationUndoOperationParameterTest)
+{
+    GoalUndo x;
+    x.undoOperation("Go for jogging,");
+    ASSERT_TRUE(x.getGoal() == "");
+    ASSERT_TRUE(x.getOperations() == "");
+}
+
+TEST(GoalUndoTest, multipleGoalMultipleoperationTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Buy a car", "Look in craigslist.com,");
+    x.addOperation("Contact seller,");
+    x.addOperation("Negotiate Price");
+    ASSERT_TRUE(x.getOperations() == "Look in craigslist.com, Contact seller, Negotiate Price");
+}
+
 
 
 
