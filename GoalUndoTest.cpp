@@ -241,6 +241,29 @@ TEST(GoalUndoTest, addOperationNoGoalTest)
     ASSERT_TRUE(x.getOperations() == "Get Fit");
 }
 
+TEST(GoalUndoTest, noGoalNoOperationTest)
+{
+    GoalUndo x;
+    x.addOperation("","");
+    ASSERT_TRUE(x.getGoal() == "");
+    ASSERT_TRUE(x.getOperations() == "");
+}
+
+TEST(GoalUndoTest, noGoalNoOperationUndoGoalTest)
+{
+    GoalUndo x;
+    x.undoGoal();
+    ASSERT_TRUE(x.getGoal() == "");
+    ASSERT_TRUE(x.getOperations() == "");
+}
+
+TEST(GoalUndoTest, noGoalNoOperationUndoOperationTest)
+{
+    GoalUndo x;
+    x.undoOperation();
+    ASSERT_TRUE(x.getGoal() == "");
+    ASSERT_TRUE(x.getOperations() == "");
+}
 
 
 
