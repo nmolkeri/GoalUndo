@@ -174,6 +174,42 @@ TEST(GoalUndoTest, undoOperationMultipleOperationTest)
     ASSERT_TRUE(x.getOperations() == "Go for jogging,");
 }
 
+TEST(GoalUndoTest, undoGoalAddMultipleGoalTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Buy a car", "Look in craigslist.com,");
+    x.undoGoal();
+    ASSERT_FALSE(x.getGoal() == "Buy a car");
+    ASSERT_TRUE(x.getGoal() == "Get Fit");
+    ASSERT_FALSE(x.getOperations() == "Look in craigslist.com,");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging,");
+}
+
+TEST(GoalUndoTest, undoOperationAddMultipleGoalTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Buy a car", "Look in craigslist.com,");
+    x.undoOperation();
+    ASSERT_FALSE(x.getGoal() == "Buy a car");
+    ASSERT_TRUE(x.getGoal() == "Get Fit");
+    ASSERT_FALSE(x.getOperations() == "Look in craigslist.com,");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging,");
+}
+
+
+//Failed test
+TEST(GoalUndoTest, undoOperationOverloadedTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.undoOperation("Go for jogging,");
+    ASSERT_TRUE(x.getGoal() == "");
+    ASSERT_FALSE(x.getGoal() == "Get Fit");
+    ASSERT_TRUE(x.getOperations() == "");
+    ASSERT_FALSE(x.getOperations() == "Go for jogging,");
+}
 
 
 
