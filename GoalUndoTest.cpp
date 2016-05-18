@@ -143,6 +143,36 @@ TEST(GoalUndoTest, undoGoalTest)
     ASSERT_TRUE(x.getGoal() == "");
 }
 
+TEST(GoalUndoTest, undoOperationTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.undoOperation();
+    ASSERT_FALSE(x.getOperations() == "Go for jogging,");
+    ASSERT_TRUE(x.getOperations() == "");
+    ASSERT_FALSE(x.getGoal() == "Get Fit");
+    ASSERT_TRUE(x.getGoal() == "");
+}
+
+TEST(GoalUndoTest, undoGoalMultipleOperationTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Lift weight,");
+    x.undoGoal();
+    ASSERT_FALSE(x.getGoal() == "Get Fit");
+    ASSERT_TRUE(x.getGoal() == "");
+}
+
+TEST(GoalUndoTest, undoOperationMultipleOperationTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Lift weight,");
+    x.undoOperation();
+    ASSERT_FALSE(x.getOperations() == "Lift weight,");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging,");
+}
 
 
 
