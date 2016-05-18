@@ -211,6 +211,36 @@ TEST(GoalUndoTest, undoOperationOverloadedTest)
     ASSERT_FALSE(x.getOperations() == "Go for jogging,");
 }
 
+TEST(GoalUndoTest, undoOperationOverloadedNoMatchTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.undoOperation("More protien intake");
+    ASSERT_TRUE(x.getGoal() == "Get Fit");
+    ASSERT_FALSE(x.getOperations() == "More protien intake");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging,");
+}
+
+TEST(GoalUndoTest, undoOperationOverloadedMultipleMatchTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit", "Go for jogging,");
+    x.addOperation("Lift weight,");
+    x.addOperation("Go for jogging,");
+    x.undoOperation("Go for jogging,");
+    ASSERT_TRUE(x.getGoal() == "Get Fit");
+    ASSERT_FALSE(x.getOperations() == "Go for jogging, Lift weight, Go for jogging,");
+    ASSERT_TRUE(x.getOperations() == "Go for jogging, Lift weight,");
+}
+
+TEST(GoalUndoTest, addOperationNoGoalTest)
+{
+    GoalUndo x;
+    x.addOperation("Get Fit");
+    ASSERT_TRUE(x.getGoal() == "Get Fit");
+    ASSERT_TRUE(x.getOperations() == "Get Fit");
+}
+
 
 
 
